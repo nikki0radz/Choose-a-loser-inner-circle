@@ -1,6 +1,6 @@
 {
-  "name": "Choose a Loser",
-  "short_name": "Loser",
+  "name": "Choose a Loser: Inner Circle",
+  "short_name": "Inner Circle",
   "description": "A chaotic little group game for deciding who loses.",
   "start_url": "./",
   "scope": "./",
