@@ -1,0 +1,23 @@
+name: Fix axolotl URL and hot pink
+on:
+  push:
+    paths:
+      - '.github/workflows/fix-axo-url-hot-pink.yml'
+permissions:
+  contents: write
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fix broken mascot URL and deepen pink
+        env:
+          PATCH_B64: ZnJvbSBwYXRobGliIGltcG9ydCBQYXRoCnA9UGF0aCgnaW5kZXguaHRtbCcpCnM9cC5yZWFkX3RleHQoKQpiYWQ9J2h0dHBzOi8vbmlra2kwcmFkei5naXRodWIuaW8vQ2hvb3NlLWEtbG9zZXJodHRwczovL25pa2tpMHJhZHouZ2l0aHViLmlvL0Nob29zZS1hLWxvc2VyL2Fzc2V0cy9heG9sb3RsLWZhY2Uud2VicD92PTY/dj02Jwpnb29kPSdhc3NldHMvYXhvbG90bC1mYWNlLndlYnA/dj03JwppZiBiYWQgbm90IGluIHM6CiAgICByYWlzZSBTeXN0ZW1FeGl0KCdCcm9rZW4gYXhvbG90bCBVUkwgbm90IGZvdW5kJykKcz1zLnJlcGxhY2UoYmFkLGdvb2QsMSkKY3NzPScnJwovKiBIb3R0ZXIgQW55dGhpbmcgR29lcyBwaW5rICovCi5wcm9vZntiYWNrZ3JvdW5kOnJhZGlhbC1ncmFkaWVudChjaXJjbGUgYXQgMjMlIDE1JSxyZ2JhKDI1NSwyNTUsMjU1LC4yNCksdHJhbnNwYXJlbnQgMjglKSxsaW5lYXItZ3JhZGllbnQoMTM1ZGVnLHJnYmEoMjU1LDU1LDE0NSwuODgpLHJnYmEoMjIwLDMwLDExMiwuNjgpKX0KJycnCmlmICcvKiBIb3R0ZXIgQW55dGhpbmcgR29lcyBwaW5rICovJyBub3QgaW4gczoKICAgIHM9cy5yZXBsYWNlKCc8L3N0eWxlPicsY3NzKydcbjwvc3R5bGU+JywxKQplbHNlOgogICAgaW1wb3J0IHJlCiAgICBzPXJlLnN1YihyJy9cKiBIb3R0ZXIgQW55dGhpbmcgR29lcyBwaW5rIFwqL1xuXC5wcm9vZlx7W15cbl0qXH0nLGNzcy5zdHJpcCgpLHMsY291bnQ9MSkKcC53cml0ZV90ZXh0KHMpCg==
+        run: echo "$PATCH_B64" | base64 --decode | python
+      - name: Commit patch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          git diff --cached --quiet || git commit -m "Fix axolotl asset URL and make Anything Goes hotter pink"
+          git push
